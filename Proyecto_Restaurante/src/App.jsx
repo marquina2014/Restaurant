@@ -1,34 +1,39 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user] = useState('Luis y Oscar')
+  const trendingRecipes = [
+    {
+      title: 'Salmon Tartare',
+      time: '30 min',
+      difficulty: 'Medium',
+      image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c'
+    }
+  ]
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <header className="app-header">
+        <h2>Aplicacion De Recetas con IA</h2>
+        <p className="subtitle">¿Que cocinaras hoy?</p>
+      </header>
+
+      <section className="recipe-section">
+        <h3>Trending Recipes</h3>
+        <div className="recipe-list">
+          {trendingRecipes.map((recipe, index) => (
+            <div className="recipe-card" key={index}>
+              <img src={recipe.image} alt={recipe.title} />
+              <div className="card-info">
+                <h4>{recipe.title}</h4>
+                <p>{recipe.time} • {recipe.difficulty}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }
 
